@@ -1,1 +1,88 @@
 Hello World
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>D20 GitHub Roller</title>
+<style>
+  body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    background: #0d1117;
+    color: white;
+    font-family: Arial, sans-serif;
+  }
+
+  .dice {
+    width: 100px;
+    height: 100px;
+    background: radial-gradient(circle, #161b22 0%, #0d1117 70%);
+    border: 2px solid #58a6ff;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2em;
+    cursor: pointer;
+    transition: transform 1s ease;
+  }
+
+  .rolling {
+    animation: spin 1s ease;
+  }
+
+  @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(1080deg); }
+  }
+</style>
+</head>
+<body>
+
+<h1>🎲 Roll the D20 to go to GitHub!</h1>
+<div class="dice" id="dice">🎲</div>
+
+<script>
+const dice = document.getElementById('dice');
+const githubPages = [
+  "https://github.com/trending",
+  "https://github.com/explore",
+  "https://github.com/topics",
+  "https://github.com/collections",
+  "https://github.com/openai",
+  "https://github.com/vercel",
+  "https://github.com/microsoft",
+  "https://github.com/google",
+  "https://github.com/facebook",
+  "https://github.com/awesome",
+  "https://github.com/torvalds/linux",
+  "https://github.com/github",
+  "https://github.com/denoland",
+  "https://github.com/nodejs",
+  "https://github.com/vitejs",
+  "https://github.com/vuejs",
+  "https://github.com/reactjs",
+  "https://github.com/nextjs",
+  "https://github.com/python",
+  "https://github.com/DefinitelyTyped"
+];
+
+dice.addEventListener('click', () => {
+  dice.classList.add('rolling');
+  const roll = Math.floor(Math.random() * 20) + 1;
+  dice.textContent = roll;
+  
+  setTimeout(() => {
+    dice.classList.remove('rolling');
+    window.location.href = githubPages[roll - 1];
+  }, 1000);
+});
+</script>
+
+</body>
+</html>
